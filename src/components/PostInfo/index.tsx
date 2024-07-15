@@ -11,30 +11,47 @@ import {
   PostInfoContainer,
   PostShowProfileStatistics,
 } from './styles'
+import { Link } from 'react-router-dom'
+import { GithubBlogContext } from '../../context/GithubBlogContext'
+import { useContext } from 'react'
+import { formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 
 export function PostInfo() {
+  const { user, postSelected } = useContext(GithubBlogContext)
   return (
     <PostInfoContainer>
       <PostInfoActions>
-        <span>
-          <FontAwesomeIcon icon={faChevronLeft} />
-          Voltar
-        </span>
-        <span>
+        <a>
+          <Link to="/">
+            <FontAwesomeIcon icon={faChevronLeft} />
+            Voltar
+          </Link>
+        </a>
+        <a
+          href={postSelected.html_url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Ver Github <FontAwesomeIcon icon={faUpRightFromSquare} />
-        </span>
+        </a>
       </PostInfoActions>
-      <h1>JavaScript data types and data structures</h1>
+      <h1>{postSelected.title}</h1>
       <PostShowProfileStatistics>
         <span>
-          <FontAwesomeIcon icon={faGithub} /> cameronwill
+          <FontAwesomeIcon icon={faGithub} /> {user.login}
         </span>
         <span>
-          <FontAwesomeIcon icon={faCalendarDay} /> Há 1 dia
+          <FontAwesomeIcon icon={faCalendarDay} />{' '}
+          {formatDistanceToNow(new Date(postSelected.updated_at), {
+            addSuffix: true,
+            locale: ptBR,
+          })}
         </span>
         <span>
           {' '}
-          <FontAwesomeIcon icon={faComment} /> 100 comentários
+          <FontAwesomeIcon icon={faComment} /> {postSelected.comments}{' '}
+          comentários
         </span>
       </PostShowProfileStatistics>
     </PostInfoContainer>
