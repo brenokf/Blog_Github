@@ -29,9 +29,10 @@ export const PostInfoActions = styled.div`
   justify-content: space-between;
   pointer-events: all;
   cursor: pointer;
-  span {
+  a {
     font-size: 14px;
     color: ${(props) => props.theme.blue};
+    text-decoration: none;
     &:hover {
       transition: 0.1s;
       border-bottom: 1px solid ${(props) => props.theme.blue};
