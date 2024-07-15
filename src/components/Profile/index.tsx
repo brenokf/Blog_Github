@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
+
 import {
   faUpRightFromSquare,
   faBuilding,
@@ -11,38 +12,36 @@ import {
   ProfileInfoIndications,
   ProfileInfoTitle,
 } from './styles'
+import { useContext } from 'react'
+import { GithubBlogContext } from '../../context/GithubBlogContext'
 
 export const Profile = () => {
+  const { user } = useContext(GithubBlogContext)
+
   return (
     <ProfileContainer>
-      <img
-        src="https://png.pngtree.com/thumb_back/fh260/background/20230614/pngtree-young-man-in-sunglasses-is-wearing-neon-colors-image_2931162.jpg"
-        alt=""
-      />
+      <img src={user?.avatar_url} alt="" />
       <ProfileInfo>
         <ProfileInfoTitle>
-          <h1>Albert Thonpson</h1>
+          <h1>{user?.name}</h1>
           <div>
-            <span>
+            <a href={user?.html_url} target="_blank" rel="noopener noreferrer">
               GITHUB
               <FontAwesomeIcon icon={faUpRightFromSquare} size="lg" />
-            </span>
+            </a>
           </div>
         </ProfileInfoTitle>
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </p>
+        <p>{user?.bio}</p>
         <ProfileInfoIndications>
           <span>
-            <FontAwesomeIcon icon={faGithub} size="lg" /> cameronwl
+            <FontAwesomeIcon icon={faGithub} size="lg" /> {user?.login}
           </span>
           <span>
-            <FontAwesomeIcon icon={faBuilding} size="lg" /> Rockseat
+            <FontAwesomeIcon icon={faBuilding} size="lg" /> {user?.company}
           </span>
           <span>
-            <FontAwesomeIcon icon={faUserGroup} size="lg" /> 32 seguidores
+            <FontAwesomeIcon icon={faUserGroup} size="lg" /> {user?.followers}{' '}
+            seguidores
           </span>
         </ProfileInfoIndications>
       </ProfileInfo>
