@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const SearchFormContainer = styled.div`
+export const SearchFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,6 +9,10 @@ export const SearchFormContainer = styled.div`
   width: 100%;
   /* topo | direita | inferior | esquerda */
   margin: 40px 0 16px 0;
+
+  button {
+    display: none;
+  }
 `
 export const SearchFormContainerContent = styled.div`
   display: flex;
@@ -34,7 +38,7 @@ export const SearchFormInput = styled.input`
   height: 50px;
   background-color: ${(props) => props.theme['base-input']};
   border: 1px solid ${(props) => props.theme['base-border']};
-
+  color: ${(props) => props.theme['base-text']};
   border-radius: 6px;
   margin-top: 12px;
   padding: 1rem;
