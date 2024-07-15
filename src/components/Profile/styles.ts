@@ -44,14 +44,15 @@ export const ProfileInfoTitle = styled.div`
     font-weight: bold;
     color: ${(props) => props.theme['base-title']};
   }
-  span {
+  a {
     pointer-events: all;
     cursor: pointer;
+    text-decoration: none;
     font-size: 12px;
     font-weight: bold;
     color: ${(props) => props.theme.blue};
   }
-  span:hover {
+  a:hover {
     transition: 0.1s;
     border-bottom: 1px solid ${(props) => props.theme.blue};
   }
